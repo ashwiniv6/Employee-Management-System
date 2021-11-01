@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import LoginSuccess from './LoginSuccess';
 class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -30,7 +29,7 @@ class Login extends React.Component {
     }
     handleFormSubmission = (event) => {
         event.preventDefault()
-        axios.post('http://localhost:8080/users/login', this.state)
+        axios.post('http://localhost:8080/users1/login', this.state)
             .then((response) => {
                 console.log(response.data.msg)
                 if (response.data.msg !="Invalid UserId and password") {
@@ -61,9 +60,12 @@ class Login extends React.Component {
             })
     }
 
-    render() {
+    render()
+     {
+         
         if (!this.state.loggedIn) {
             return (
+               
                     <React.Fragment>
                        
                         <div className="container mt-3">
@@ -81,26 +83,30 @@ class Login extends React.Component {
                                     <input onChange={this.handlePassword} value={this.state.password} type="password" className="form-control" />
                                 </div>
                                 <div>
-                                <button className="submit" >Login</button>
+                              <button className="submit">Save</button>
                                 </div>
                             </form>
                             
                         </div>
                         <h5 className="text-danger container mt-2">{this.state.failedMsg}</h5>
                     </React.Fragment>
+                    
                     )
         }
          else{
              return(
+            
                     <div className="container">
                         <h4 className="text-danger">{this.state.successMsg}</h4>
-                        <LoginSuccess />
                         <div style={{float: 'right'}}>
                         <button onClick={this.handleLogout} className="btn btn-danger">Logout</button>
                         </div>
                     </div>
+                 
                     )
+                   
             }
+    
         }
     }
 export default Login;

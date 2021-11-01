@@ -1,6 +1,6 @@
 import React,{Component} from "react";
-import  EmployeeService  from "./Service/EmployeeService";
-export default class Employee extends Component
+import  SignUpService  from "./Service/SignUpService";
+export default class SignUp extends Component
 {
     constructor(props){
         super(props)
@@ -67,7 +67,7 @@ export default class Employee extends Component
 
     saveEmployee(employee)
     {
-        EmployeeService.saveEmployee(employee).then(response=>
+        SignUpService.saveEmployee(employee).then(response=>
             {
                 console.log(response)
             }).catch(error=>console.log(error))
@@ -76,11 +76,11 @@ export default class Employee extends Component
     render()
     {
         return (
-            <div>
-            <h2 className="text-info">Employee</h2>
-            <hr/>
+            <div className="container">
             <form className="form-wrapper" onSubmit={this.handleForSubmission}>
                 <div className="name">
+                <h2 className="title">SignUp</h2>
+                <hr/>
                     <label>User Id</label>
                     <input onChange={this.handleuserId} value={this.state.userId} className="form-control"/>
                 </div>
@@ -90,23 +90,24 @@ export default class Employee extends Component
                     <input onChange={this.handlefirstName} value={this.state.firstName} className="form-control"/>
                 </div>
 
-                <div className="">
+                <div className="name">
                     <label>Last Name</label>
                     <input onChange={this.handlelastName} value={this.state.lastName} className="form-control"/>
                 </div>
 
-                <div className="form-group">
+                <div className="name">
                     <label>DOB</label>
                     <input onChange={this.handledob} value={this.state.dob} className="form-control"/>
                 </div>
 
-                <div className="form-group">
+                <div className="name">
                     <label>Email ID</label>
                     <input onChange={this.handleemail} value={this.state.email} className="form-control"/>
                 </div>
-                <button className="btn btn-primary mt-2">Save</button>
+                <button className="submit">Sign Up</button>
             </form>
             </div>
+            
         )
     }
 }
